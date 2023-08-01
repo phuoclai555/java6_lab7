@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{/layout/layout::dynamic(~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Thymeleaf 1</h3>
+    <i th:unless="${#authentication}" style="color:red;">Chua dang nhap</i>
+    <ul sec:authorize="${authenticated}">
+        <li th:if="${#authentication.getAuthorities().contains('ADMIN')}">ADMIN</li>
+        <li th:if="${#authentication.getAuthorities().contains('USER')}">USER</li>
+        <li th:if="${#authentication.getAuthorities().contains('GUEST')}">GUEST</li>
+    </ul>
+</body>
+</html>

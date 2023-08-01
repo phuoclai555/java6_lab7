@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+      <h4>ROLES</h4>
+      <ul>
+        <li th:each="item: ${db.get('roles').iterator}">
+          [[${item.get('id').asText()}]]
+        </li>
+      </ul>
+      <h4>ACCOUNTS</h4>
+      <ul>
+        <li th:each="item: ${db.get('accounts').iterator}">
+          [[${item.get('username').asText()}]]
+        </li>
+      </ul>
+      <h4>AUTHORITIES</h4>
+      <ul>
+        <li th:each="item: ${db.get('authorities').iterator}">
+          [[${item.get('account').get('username').asText()}]]-
+          [[${item.get('role').get('id').asText()}]]
+        </li>
+      </ul>
+</body>
+</html>

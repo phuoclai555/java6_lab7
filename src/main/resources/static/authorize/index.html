@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title></title>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <h3>Authorizing</h3>
+    <table ng-if="db" style="width: 100%" border=1">
+        <thead>
+            <tr>
+                <th></th>
+                <th ng-repeat="role in db.roles">{{role.name}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="acc in db.accounts">
+                <th>{{acc.username}}</th>
+                <th ng-repeat="role in db.roles">
+                    <label>
+                        <input type="checkbox"
+                            ng-checked="index_of(acc.username,role.id) >= 0"
+                            ng-click="update(acc.username,role.id)">
+                    </label>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <script src="/authorize/ctrl.js"></script>
+</body>
+</html>
